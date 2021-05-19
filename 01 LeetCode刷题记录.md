@@ -1,3 +1,60 @@
+##### 547、省份数量
+
+有 n 个城市，其中一些彼此相连，另一些没有相连。如果城市 a 与城市 b 直接相连，且城市 b 与城市 c 直接相连，那么城市 a 与城市 c 间接相连。
+
+省份 是一组直接或间接相连的城市，组内不含其他没有相连的城市。
+
+给你一个 n x n 的矩阵 isConnected ，其中 isConnected[i][j] = 1 表示第 i 个城市和第 j 个城市直接相连，而 isConnected[i][j] = 0 表示二者不直接相连。
+
+返回矩阵中 省份 的数量。
+
+```c
+输入：isConnected = [[1,1,0],[1,1,0],[0,0,1]]
+输出：2
+```
+
+
+
+题目分析：这个题吧，要这么考虑，把n个城市都存进一个数组里，遍历数组依次处理。处理方法用深度优先遍历(DFS)该数组，用DFS的递归写法，当前节点时，深搜，一旦确定是同省份，将该城市标记，同时将省份数量加1。主函数依然是遍历，辅函数还是DFS递归去深搜当前节点的同省城市，以便主函数下次遍历到时直接跳过，省的浪费时间(因为你已经处理过了，将它并到某个省了)。辅函数要知道：你当前遍历到第几行，该行每列元素是否为1，该行是否被标记过
+
+
+
+知识点：go切片定义；go匿名函数；
+
+
+
+```go
+func findCircleNum(isConnected [][]int) int {
+
+   resCount:=0
+   visit:=make([]bool, len(isConnected))
+
+   // 辅函数
+   var dfs func(visit []bool, isConnected[][]int, i int)
+   dfs = func(visit []bool, isConnected [][]int, i int) {
+      // 辅函数只管搜索该节点的，满足搜索规则的
+      visit[i] = true
+      for j:=0; j<len(isConnected);j++ {
+         if isConnected[i][j] == 1 && !visit[j] {
+            // 深搜到j是同省的，继续递归j
+            dfs(visit, isConnected, j)
+         }
+      }
+   }
+   // 主函数
+   for k:=0;k<len(visit);k++ {
+      if !visit[k] {
+         dfs(visit, isConnected, k)
+         resCount++
+      }
+   }
+   return resCount
+
+}
+```
+
+
+
 
 
 ##### 695、岛屿的最大面积
