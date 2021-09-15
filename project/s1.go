@@ -15,9 +15,9 @@ func s1() {
 
 /**
 	知识点1：基本类型的切片排序函数
-	int类型切片排序, sort.Ints(a []int)
-	float64类型切片排序, sort.Float64s(a []float64)
-	string类型切片排序, sort.Strings(a []string)
+	1.int类型切片排序, sort.Ints(a []int)
+	2.float64类型切片排序, sort.Float64s(a []float64)
+	3.string类型切片排序, sort.Strings(a []string)
 */
 
 
