@@ -5,3 +5,8 @@ type TreeNode struct {
 		Left *TreeNode
 		Right *TreeNode
 }
+
+// 打桩函数
+func guess(n int) int {
+	return 0
+}
