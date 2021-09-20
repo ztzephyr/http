@@ -6,8 +6,8 @@ import (
 )
 
 /**
-二分查找
-1. 用这个方法，要求有序数组,升序降序处理略有不同
+	二分查找
+	1. 用这个方法，要求有序数组,升序降序处理略有不同
 */
 
 func s2() {
@@ -16,9 +16,9 @@ func s2() {
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
-知识点1：最基础经典的二分查找算法
-1. 要求就是在一个有序的条件
-2. 你可以根据对查找出来的值的要求，来决定是否继续查询，还是保留当前结果
+	知识点1：最基础经典的二分查找算法
+	1. 要求就是在一个有序的条件
+	2. 你可以根据对查找出来的值的要求，来决定是否继续查询，还是保留当前结果
 */
 
 // ld-704 二分查找
@@ -94,18 +94,18 @@ func mySqrt(x int) int {
 
 ///////////////////////////////////////////////////////////////////////////////
 /**
-知识点1：Go的二分查找函数(sort.search)
-sort.Search(n int, f func(int) bool) int
-1.要求有序，在n个元素中,使用"二分查找"算法查找指定target
-2.满足f(index)=true的条件下，从[0,n)中取出一个最小的index;
-3.会假定f(index)=true, 那么f(index+1)=true;（因此查找某个值时，应该用f>=target)
-4.[0,n)中没有满足条件的index时，此时返回n, 需特别注意
+	知识点1：Go的二分查找函数(sort.search)
+	sort.Search(n int, f func(int) bool) int
+	1.要求有序，在n个元素中,使用"二分查找"算法查找指定target
+	2.满足f(index)=true的条件下，从[0,n)中取出一个最小的index;
+	3.会假定f(index)=true, 那么f(index+1)=true;（因此查找某个值时，应该用f>=target)
+	4.[0,n)中没有满足条件的index时，此时返回n, 需特别注意
 
-sort.SearchInts(a []int, x int) int
-sort.SearchFloat64s(a []float64, x float64) int
-sort.SearchStrings(a []string, x string) int
-1.直接实现了3种基本类型的二分查找，即在[0,n-1]找到一个最小的>=x的元素对应索引；
-2.需要自行处理找不到或者找到大于目标值的情况
+	sort.SearchInts(a []int, x int) int
+	sort.SearchFloat64s(a []float64, x float64) int
+	sort.SearchStrings(a []string, x string) int
+	1.直接实现了3种基本类型的二分查找，即在[0,n-1]找到一个最小的>=x的元素对应索引；
+	2.需要自行处理找不到或者找到大于目标值的情况
 */
 
 // ld-704 二分查找
