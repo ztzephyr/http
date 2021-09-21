@@ -4,7 +4,7 @@ import "fmt"
 
 func main() {
 	fmt.Println("run main.go ...")
-	s1()
+	s7()
 }
 
 

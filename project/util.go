@@ -10,3 +10,11 @@ type TreeNode struct {
 func guess(n int) int {
 	return 0
 }
+
+// 计算较大值
+func max(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
+}
