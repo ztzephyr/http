@@ -1,10 +1,19 @@
 package main
 
-import "fmt"
+import (
+	_ "container/heap"
+	"fmt"
+)
+
+func init() {
+	fmt.Println("main.go init")
+}
 
 func main() {
 	fmt.Println("run main.go ...")
-	s7()
+	s11()
+	//sOther()
 }
+
 
 

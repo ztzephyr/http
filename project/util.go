@@ -6,6 +6,12 @@ type TreeNode struct {
 		Right *TreeNode
 }
 
+type ListNode struct {
+	Val int
+	Next *ListNode
+}
+
+
 // 打桩函数
 func guess(n int) int {
 	return 0
