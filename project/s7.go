@@ -1,21 +1,178 @@
 package main
 
 import (
-	"container/heap"
 	"fmt"
 	"strconv"
 	"strings"
 )
 
-/**
-深度优先搜索
-定义：
-*/
+// 回溯/DFS算法应用
 func s7() {
 	fmt.Println("run s7.go")
-
-	Example_priorityQueue()
 }
+
+// 17.电话号码的字母组合(track不为切片)
+func letterCombinations(digits string) []string {
+	var res []string
+	if len(digits) == 0 {
+		return nil
+	}
+	var backTrack func(digits string, track string, index int)
+	backTrack = func(digits string, track string, index int) {
+		// base case
+		if index == len(digits) {
+			res = append(res, track)
+			return
+		}
+		for _, v := range m[digits[index]] {
+			x := []byte{byte(v)}
+			curStr := string(x)
+
+			track += curStr
+			backTrack(digits, track, index+1)
+			track = track[:len(track)-1]
+		}
+	}
+	var track string
+	backTrack(digits, track, 0)
+	return res
+}
+var m map[byte]string = map[byte]string {
+	'2' : "abc",
+	'3' : "def",
+	'4' : "ghi",
+	'5' : "jkl",
+	'6' : "mno",
+	'7' : "pqrs",
+	'8' : "tuv",
+	'9' : "wxyz",
+}
+
+// 93.复原IP地址(track为切片)
+func restoreIpAddresses(s string) []string {
+	var res []string
+	var backTrack func(track []string, endIdx int, count int)
+	backTrack = func(track []string, endIdx int, count int) {
+		// base case
+		if count == 4 {
+			if endIdx == len(s) {
+				// 已经选择了4个，且已到s的末端
+				tmp := make([]string, 4)
+				copy(tmp, track)
+				ip := strings.Join(tmp, ".")
+				res = append(res, ip)
+			}
+			return
+		}
+		// 回溯选择
+		for i:=endIdx+1;i<=len(s);i++{
+			if s[endIdx] == '0' && i > endIdx + 1 {
+				break;
+			}
+			curIp := s[endIdx:i]
+			numIp, _ := strconv.Atoi(curIp)
+			if numIp > 255 {
+				break
+			}
+			track = append(track, curIp)
+			backTrack(track, i, count+1)
+			track = track[:len(track)-1]
+		}
+	}
+	var track []string
+	for i:=1;i<=len(s);i++{
+		if s[0] == '0' && i > 1 {
+			break
+		}
+		cur := s[:i]
+		num, _ := strconv.Atoi(cur)
+		if num > 255 {
+			break
+		}
+		track = append(track, cur)
+		backTrack(track, i, 1)
+		track = track[:len(track)-1]
+	}
+	return res
+}
+
+// 39.组合总和(结果不含重复)
+func combinationSum(candidates []int, target int) [][]int {
+	var res [][]int
+	var backTrack func(track []int, sum int, idx int)
+	backTrack = func(track []int, sum int, idx int) {
+		// 终止条件
+		if idx == len(candidates) {
+			return
+		}
+		if sum == target {
+			tmp := make([]int, len(track))
+			copy(tmp, track)
+			res = append(res, tmp)
+			return
+		}
+		// 直接跳过使用这个数字
+		backTrack(track, sum, idx+1)
+
+		// 不跳过这个数字，且剪枝
+		if sum < target {
+			newSum := sum + candidates[idx]
+			track = append(track, candidates[idx])
+			backTrack(track, newSum, idx)
+			track = track[:len(track)-1]
+		}
+	}
+	var track []int
+	backTrack(track, 0, 0)
+	return res
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ld-695 岛屿的最大面积
 func maxAreaOfIsland(grid [][]int) int {
@@ -125,57 +282,6 @@ func solve(board [][]byte) {
 }
 
 
-func restoreIpAddresses(s string) []string {
-	var res []string
-	var backTrack func(track []string, endIdx int, count int)
-	backTrack = func(track []string, endIdx int, count int) {
-		// 回溯终止条件
-		if count == 4 {
-			if endIdx != len(s) {
-				return
-			}
-			tmp := make([]string, 4)
-			copy(tmp, track)
-			ip := strings.Join(tmp, ".")
-			fmt.Println("xx:", ip)
-			res = append(res, ip)
-			return
-		}
-
-		// 做选择
-		for i:= endIdx+1;i<=len(s);i++{
-			// 排除前导0
-			if i > endIdx + 1 && s[endIdx] == '0' {
-				break
-			}
-			num := s[endIdx:i]
-
-			digit, _ :=strconv.Atoi(num)
-			if digit > 255 {
-				continue
-			}
-			track = append(track, num)
-			backTrack(track, i, count+1)
-			track = track[:len(track)-1]
-		}
-	}
-
-	track := make([]string, 0)
-	for i:=1;i<len(s);i++{
-		if i > 1 && s[0] == '0'  {
-			break
-		}
-		num := s[:i]
-		digit, _ :=strconv.Atoi(num)
-		if digit > 255 {
-			continue
-		}
-		track = append(track, num)
-		backTrack(track, i, 1)
-		track = track[:len(track)-1]
-	}
-	return res
-}
 
 
 
@@ -186,88 +292,4 @@ func restoreIpAddresses(s string) []string {
 
 
 
-type Item struct {
-	value    string // The value of the item; arbitrary.
-	priority int    // The priority of the item in the queue.
-	// The index is needed by update and is maintained by the heap.Interface methods.
-	index int // The index of the item in the heap.
-}
 
-// A PriorityQueue implements heap.Interface and holds Items.
-type PriorityQueue []*Item
-
-func (pq PriorityQueue) Len() int { return len(pq) }
-
-func (pq PriorityQueue) Less(i, j int) bool {
-	// We want Pop to give us the highest, not lowest, priority so we use greater than here.
-	return pq[i].priority > pq[j].priority
-}
-
-func (pq PriorityQueue) Swap(i, j int) {
-	pq[i], pq[j] = pq[j], pq[i]
-	pq[i].index = i
-	pq[j].index = j
-}
-
-func (pq *PriorityQueue) Push(x interface{}) {
-	n := len(*pq)
-	item := x.(*Item)
-	item.index = n
-	*pq = append(*pq, item)
-}
-
-func (pq *PriorityQueue) Pop() interface{} {
-	old := *pq
-	n := len(old)
-	item := old[n-1]
-	old[n-1] = nil  // avoid memory leak
-	item.index = -1 // for safety
-	*pq = old[0 : n-1]
-	return item
-}
-
-// update modifies the priority and value of an Item in the queue.
-func (pq *PriorityQueue) update(item *Item, value string, priority int) {
-	item.value = value
-	item.priority = priority
-	heap.Fix(pq, item.index)
-}
-
-// This example creates a PriorityQueue with some items, adds and manipulates an item,
-// and then removes the items in priority order.
-func Example_priorityQueue() {
-	// Some items and their priorities.
-	items := map[string]int{
-		"banana": 3, "apple": 2, "pear": 4,
-	}
-
-	// Create a priority queue, put the items in it, and
-	// establish the priority queue (heap) invariants.
-	pq := make(PriorityQueue, len(items))
-	i := 0
-	for value, priority := range items {
-		pq[i] = &Item{
-			value:    value,
-			priority: priority,
-			index:    i,
-		}
-		i++
-	}
-	heap.Init(&pq)
-
-	// Insert a new item and then modify its priority.
-	item := &Item{
-		value:    "orange",
-		priority: 1,
-	}
-	heap.Push(&pq, item)
-	pq.update(item, "banana", 5)
-
-	// Take the items out; they arrive in decreasing priority order.
-	for pq.Len() > 0 {
-		item := heap.Pop(&pq).(*Item)
-		fmt.Printf("%.2d:%s ", item.priority, item.value)
-	}
-	// Output:
-	// 05:orange 04:pear 03:banana 02:apple
-}

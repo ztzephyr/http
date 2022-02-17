@@ -2,14 +2,95 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
-/**
-	排序
- */
+// 排序及应用
 func s1() {
 	fmt.Println("run s1.go ...")
+
+
+	p := []People{
+		{1, "Bob", 31},
+		{5, "John", 42},
+		{5, "Michael", 17},
+		{5, "Jenny", 26},
+	}
+	fmt.Println(p)
+	sort.Sort(BySome(p))
+	fmt.Println(p)
 }
+
+
+
+type People struct {
+	id int
+	name string
+	age int
+}
+
+type BySome []People
+
+func (h BySome) Len() int { return len(h) }
+func (h BySome) Swap(i, j int) { h[i], h[j] = h[j], h[i]}
+func (h BySome) Less(i, j int) bool {
+	if h[i].id < h[i].id {
+		return true
+	} else if h[i].id == h[j].id {
+		if h[i].age < h[j].age {
+			return true
+		} else {
+			return false
+		}
+	} else {
+		return false
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////////
 

@@ -80,3 +80,61 @@ func minDepth(root *TreeNode) int {
 	}
 	return step
 }
+
+// 752.打开转盘锁(BFS求最短路径，避免回头路)
+func openLock(deadends []string, target string) int {
+	var step int
+	visit := make(map[string]bool)
+	for _, v := range deadends {
+		visit[v] = true
+	}
+	if _, ok := visit[target]; ok {
+		return -1
+	}
+	var queue []string
+	queue = append(queue, "0000")
+	step = -1
+	for len(queue) > 0 {
+		var tmpQueue []string
+		step++
+
+		for i := 0; i< len(queue); i++ {
+			cur := queue[i]
+			if visit[cur] {
+				continue
+			}
+			visit[cur] = true
+			if cur == target {
+				return step
+			}
+			// 计算相邻节点
+			for k:=0;k<4;k++{
+				up := plusOne(cur, k)
+				down := minusOne(cur, k)
+				tmpQueue = append(tmpQueue, up)
+				tmpQueue = append(tmpQueue, down)
+			}
+		}
+		// 刷新queue
+		queue = tmpQueue
+	}
+	return  -1
+}
+func plusOne(s string, k int) string {
+	t := []byte(s)
+	if t[k] == '9' {
+		t[k] = '0'
+	} else {
+		t[k] += 1
+	}
+	return string(t)
+}
+func minusOne(s string, k int) string {
+	t := []byte(s)
+	if t[k] == '0' {
+		t[k] = '9'
+	} else {
+		t[k] -= 1
+	}
+	return string(t)
+}

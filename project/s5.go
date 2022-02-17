@@ -3,27 +3,13 @@ package main
 import (
 	"fmt"
 	"math"
-	"strconv"
 )
 
 func s5() {
 	fmt.Println("run s5.go ...")
-	s := "ADOBECODEBANC";
-	t := "ABC"
-	fmt.Println(minWindow(s,t))
-	x := strconv.Itoa(123)
-	fmt.Println(x)
-
-
-
-
-
-
 }
 
-
-
-// 76.最小覆盖子串
+// 76.最小覆盖子串(特定条件收缩窗口)
 func minWindow(s string, t string) string {
 	var res string
 	var valid int
@@ -67,6 +53,46 @@ func minWindow(s string, t string) string {
 		}
 	}
 	return res
+}
+
+// 219.存在重复元素II(哈希表记录索引)
+func containsNearbyDuplicate(nums []int, k int) bool {
+	// 满足相等： 用哈希表记录元素索引
+	window := make(map[int]int)
+	for i:=0;i<len(nums);i++{
+		// 当前元素是否记录过
+		if _, ok := window[nums[i]]; ok {
+			// 当前距离近的元素，索引刷新，即找到的已经是最近的满足条件的了
+			if abs(i, window[nums[i]]) <= k {
+				return true
+			}
+		}
+		// 记录元素索引
+		window[nums[i]] = i
+	}
+	return false
+}
+
+// 220.存在重复元素III(固定长度滑窗)
+func containsNearbyAlmostDuplicate(nums []int, k int, t int) bool {
+	// 选择窗口起点
+	for i:=0;i<len(nums);i++{
+		// abs(i-j)<=k 可视为 r最大 = max(i-k, k+i)
+		// 固定长度为k+1的窗口
+		for r:=i+1; r-i<=k && r<len(nums); r++{
+			// r 右移k+1个位置
+			if abs(nums[i], nums[r]) <= t {
+				return true
+			}
+		}
+	}
+	return false
+}
+func abs(a, b int) int {
+	if a > b {
+		return a - b
+	}
+	return b - a
 }
 
 // 567.字符串的排列

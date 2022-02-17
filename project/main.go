@@ -11,8 +11,9 @@ func init() {
 
 func main() {
 	fmt.Println("run main.go ...")
-	s11()
+	s2()
 	//sOther()
+
 }
 
 

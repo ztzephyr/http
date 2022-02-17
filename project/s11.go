@@ -6,6 +6,9 @@ import (
 )
 
 /* 使用heap构造优先队列 */
+/**
+1.最大堆：
+ */
 func s11() {
 	fmt.Println("run s11.go...")
 

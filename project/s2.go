@@ -5,43 +5,134 @@ import (
 	"sort"
 )
 
-/**
-	二分查找
-	1. 用这个方法，要求有序数组,升序降序处理略有不同
-*/
 
+/**
+二分搜索(要求有序数组)
+ */
 func s2() {
 	fmt.Println("run s2.go ...")
+	p := []int{312884470}
+	minEatingSpeed(p,968709470)
 }
 
-///////////////////////////////////////////////////////////////////////////////
-/**
-	知识点1：最基础经典的二分查找算法
-	1. 要求就是在一个有序的条件
-	2. 你可以根据对查找出来的值的要求，来决定是否继续查询，还是保留当前结果
-*/
-
-// ld-704 二分查找
-func search(nums []int, target int) int {
-	/**
-	1.最经典的二分查找,也是最基础的二分查找
-	2.二分查找在一个闭区间中进行寻找，每次取查找范围的中点mid
-	3.闭区间的中点如何计算，闭区间则满足l<=r
-	*/
-
-	l, r := 0, len(nums)-1
-	for l <= r {
-		mid := l + (r-l)/2
+// 34.在排序数组中查找元素的第1个位置和最后1个位置
+func searchRange(nums []int, target int) []int {
+	left := leftBound(nums, target)
+	right := rightBound(nums, target)
+	return []int{left, right}
+}
+func leftBound(nums []int, target int) int {
+	left, right := 0, len(nums)
+	for left < right {
+		mid := left + (right-left)/2
 		if nums[mid] == target {
-			return mid
+			right = mid
+		} else if nums[mid] < target {
+			left = mid + 1
 		} else if nums[mid] > target {
-			r = mid - 1
-		} else {
-			l = mid + 1
+			right = mid
 		}
 	}
-	return -1
+	// 全部<target + 全部>target
+	if left == len(nums) || nums[left] != target {
+		return -1
+	}
+	return left
 }
+func rightBound(nums []int, target int) int {
+	left, right := 0, len(nums)
+	for left < right {
+		mid := left + (right-left)/2
+		if nums[mid] == target {
+			left = mid + 1
+		} else if nums[mid] < target {
+			left = mid + 1
+		} else if nums[mid] > target {
+			right = mid
+		}
+	}
+	// 全部>target + 全部<target
+	if left == 0 || nums[left-1] != target {
+		return -1
+	}
+	return left - 1
+}
+
+// 35.搜索插入位置(二分搜索左侧边界，target不存在时返回的是应该插入的位置)
+func searchInsert(nums []int, target int) int {
+	//搜索左侧边界,当target不存在数组nums中时，返回值可以做以下几种解读：
+	//1、返回的这个值是nums中大于等于target的最小元素索引。
+	//2、返回的这个值是target应该插入在nums中的索引位置。
+	//3、返回的这个值是nums中小于target的元素个数
+	left, right := 0, len(nums)
+	for left < right {
+		mid := left + (right-left)/2
+		if nums[mid] == target {
+			right = mid
+		} else if nums[mid] < target {
+			left = mid + 1
+		} else if nums[mid] > target {
+			right = mid
+		}
+	}
+	// 全部<target + 全部>target
+	if left == len(nums) || nums[left] != target {
+		return left
+	}
+	return left
+}
+
+// 875.珂珂吃香蕉(二分搜索-画图应用)
+func minEatingSpeed(piles []int, h int) int {
+	// 速度最小为0,最大为一堆香蕉的最大根数
+	left, right := 1, getMaxCount(piles) + 1
+	for left < right {
+		mid := left + (right-left)/2
+		if f(piles, mid) == h {
+			right = mid
+		} else if f(piles, mid) < h {
+			right = mid
+		} else if f(piles, mid) > h {
+			left = mid + 1
+		}
+	}
+	return left
+}
+// 计算吃完所有香蕉需要的时间
+func f(piles []int, k int) int {
+	var hour int
+	fmt.Println(piles)
+	for _, v := range piles {
+		fmt.Println(v)
+		hour += int(v)/k
+		if v%k != 0 {
+			hour++
+		}
+	}
+	return hour
+}
+// 计算一堆香蕉的最大根数
+func getMaxCount(piles []int) int {
+	var maxCount int
+	for _, v := range piles {
+		if v > maxCount {
+			maxCount = v
+		}
+	}
+	return maxCount
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ld-374 猜数字大小
 func guessNumber(n int) int {
@@ -108,28 +199,6 @@ func mySqrt(x int) int {
 	2.需要自行处理找不到或者找到大于目标值的情况
 */
 
-// ld-704 二分查找
-func search1(nums []int, target int) int {
-	/**
-	1.用了Go的排序接口，然后用的Go的二分查找接口
-	2.Go的二分查找接口返回n是找不到，返回idx对应值不等于目标值是找到后面去了
-	*/
-
-	// 定义要返回的索引
-	var idx int
-
-	// 排序后查找
-	sort.Ints(nums)
-	idx = sort.Search(len(nums), func(i int) bool {
-		return nums[i] >= target
-	})
-
-	// 若找到的元素更大，或者找不到满足条件的，手动返回-1
-	if idx <= len(nums) && nums[idx] == target {
-		return idx
-	}
-	return -1
-}
 
 // ld-33 搜索旋转排序数组
 func search2(nums []int, target int) int {

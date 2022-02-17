@@ -1,66 +1,62 @@
 package main
 
 import (
-	"container/list"
 	"fmt"
 )
 
-/*  单调队列 */
+// 前缀和：原始数组不会被修改，频繁查询某区间的和
 func s12() {
 	fmt.Println("run s12.go...")
-	nums := []int{1, -1}
-
-	fmt.Println(maxSlidingWindow(nums, 1))
 }
 
-
-
-
-// 单调队列
-type MonotonicQueue struct {
-	list *list.List
+// 304.二维区域和检索
+type NumMatrix struct {
+	preSum [][]int
 }
-
-func (mq *MonotonicQueue) push(n int) {
-	// 将小于n的元素都删除
-	for mq.list.Len() != 0 && mq.list.Back().Value.(int) < n {
-		value := mq.list.Back()
-		mq.list.Remove(value)
-		fmt.Println(mq.list.Len())
+func Constructor304(matrix [][]int) NumMatrix {
+	preSum := make([][]int, len(matrix)+1)
+	for k, _ := range preSum {
+		preSum[k] = make([]int, len(matrix[0])+1)
 	}
-	mq.list.PushBack(n)
-}
-func (mq *MonotonicQueue) max() int {
-	return mq.list.Front().Value.(int)
-}
-
-func (mq *MonotonicQueue) pop(n int) {
-	firstElement := mq.list.Front()
-	if firstElement.Value.(int) == n {
-		mq.list.Remove(firstElement)
-
-	}
-}
-
-func maxSlidingWindow(nums []int, k int) []int {
-	var res []int
-	mq := MonotonicQueue{list:list.New()}
-	for i:=0;i<len(nums);i++{
-
-		if i < k-1 {
-			mq.push(nums[i])
-		} else {
-
-			// 窗口中加入1个元素
-			mq.push(nums[i])
-
-			// 记录当前窗口最大值
-			res = append(res, mq.max())
-
-			mq.pop(nums[i-k+1])
-
+	for i:=1;i<len(preSum);i++{
+		for j:=1;j<len(preSum[0]);j++{
+			up, left, upleft := 0, 0, 0
+			up = preSum[i-1][j]
+			left = preSum[i][j-1]
+			upleft = preSum[i-1][j-1]
+			preSum[i][j] = up + left - upleft + matrix[i-1][j-1]
 		}
+	}
+	res := NumMatrix{
+		preSum : preSum,
 	}
 	return res
 }
+func (this *NumMatrix) SumRegion(row1 int, col1 int, row2 int, col2 int) int {
+	up, left, upleft := 0, 0, 0
+	up = this.preSum[row1][col2+1]
+	left = this.preSum[row2+1][col1]
+	upleft = this.preSum[row1][col1]
+	res := this.preSum[row2+1][col2+1] - up - left + upleft
+	return res
+}
 
+// 和为k的子数组(哈希表记录前缀和个数)
+func subarraySum(nums []int, k int) int {
+	var count int
+	m := make(map[int]int)
+	//构造前缀和
+	preSum := make([]int, len(nums)+1)
+	for i:=1;i<len(preSum);i++{
+		preSum[i] = preSum[i-1] + nums[i-1]
+	}
+	for i:=0;i<len(preSum);i++{
+		need := preSum[i] - k
+		if _, ok := m[need]; ok {
+			count += m[need]
+		}
+		//使用哈希表记录个数
+		m[preSum[i]]++
+	}
+	return count
+}
