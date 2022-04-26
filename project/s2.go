@@ -11,8 +11,6 @@ import (
  */
 func s2() {
 	fmt.Println("run s2.go ...")
-	p := []int{312884470}
-	minEatingSpeed(p,968709470)
 }
 
 // 34.在排序数组中查找元素的第1个位置和最后1个位置
@@ -58,6 +56,7 @@ func rightBound(nums []int, target int) int {
 	return left - 1
 }
 
+
 // 35.搜索插入位置(二分搜索左侧边界，target不存在时返回的是应该插入的位置)
 func searchInsert(nums []int, target int) int {
 	//搜索左侧边界,当target不存在数组nums中时，返回值可以做以下几种解读：
@@ -81,6 +80,7 @@ func searchInsert(nums []int, target int) int {
 	}
 	return left
 }
+
 
 // 875.珂珂吃香蕉(二分搜索-画图应用)
 func minEatingSpeed(piles []int, h int) int {
@@ -122,6 +122,43 @@ func getMaxCount(piles []int) int {
 	return maxCount
 }
 
+
+// 1011.在D天内送达包裹的能力
+func shipWithinDays(weights []int, days int) int {
+	minCap, maxCap := 0, 0
+	for _, v := range weights {
+		maxCap += v
+		if minCap < v {
+			minCap = v
+		}
+	}
+	left, right := minCap, maxCap+1
+	for left < right {
+		mid := left + (right-left)/2
+		if fw(weights, mid) == days {
+			right = mid
+		} else if fw(weights, mid) < days {
+			right = mid
+		} else if fw(weights, mid) > days {
+			left = mid + 1
+		}
+	}
+	return left
+}
+// 计算运载能力为k时,送掉传输带上所有包裹的时间
+func fw(weights []int, k int) int {
+	var days int
+	sum := 0
+	for i:=0;i<len(weights);i++{
+		sum += weights[i]
+		if sum > k {
+			days++
+			sum = weights[i]
+		}
+	}
+	days++
+	return days
+}
 
 
 
