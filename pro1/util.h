@@ -4,7 +4,7 @@
 #define PRO1_UTIL_H
 
 
-// 设计链表时，定义的链表节点结构
+// 公共链表节点数据结构
 struct ListNode {
     int val;
     ListNode*  next;
@@ -13,8 +13,15 @@ struct ListNode {
     ListNode(int x, ListNode* next) : val(x), next(next) {};
 };
 
-
-
+// 公共二叉树节点数据结构
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode() : val(0), left(nullptr), right(nullptr) {}
+    explicit TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+};
 
 
 

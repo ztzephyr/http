@@ -80,9 +80,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="D:/MyGithub/http/pro1/arr_test.h">
-			<Option target="pro1"/>
-		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/list_test.h">
 			<Option target="pro1"/>
 		</Unit>
@@ -93,6 +90,24 @@
 			<Option target="pro1"/>
 		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/string_test.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_arr.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_bfs.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_dfs.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_dynamic.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_greedy.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_hash.h">
 			<Option target="pro1"/>
 		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/tree_test.h">
