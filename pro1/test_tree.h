@@ -1,6 +1,6 @@
 
-#ifndef PRO1_TREE_TEST_H
-#define PRO1_TREE_TEST_H
+#ifndef PRO1_TEST_TREE_H
+#define PRO1_TEST_TREE_H
 
 #include<vector>
 #include <queue>
@@ -330,6 +330,28 @@ public:
     }
 };
 
+class S2331 {
+public:
+    bool evaluateTree(TreeNode* root) {
+        return traverse(root);
+    }
+
+    bool traverse(TreeNode* root) {
+        if (root->left == nullptr && root->right == nullptr) {
+            return root->val;
+        }
+
+        bool left = traverse(root->left);
+        bool right = traverse(root->right);
+
+        if (root->val == 2) {
+            return left || right;
+        } else {
+            return left && right;
+        }
+    }
+};
+
 
 
 
@@ -393,4 +415,12 @@ public:
 };
 
 
-#endif //PRO1_TREE_TEST_H
+
+
+
+
+
+
+
+
+#endif //PRO1_TEST_TREE_H

@@ -193,6 +193,70 @@ public:
 };
 
 
+class S10 {
+public:
+    bool isMatch(string s, string p) {
+
+        vector<vector<int>> mem(s.size()+1, vector<int>(p.size()+1, -1));
+
+        return dp(s, 0, p, 0, mem);
+
+    }
+
+    // 计算模式串p[j..]是否可以匹配文本串s[i..]
+    bool dp(string s, int i, string p, int j, vector<vector<int>>& mem) {
+
+
+        int m = s.size(), n = p.size();
+        if (j == n) {
+            return i == m;
+        }
+
+        if (i == m) {
+            if ((n-j)%2 == 1) {
+                return  false;
+            }
+
+            for (; j+1<n;j += 2) {
+                if (p[j+1] != '*') {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        if (mem[i][j] != -1) {
+            return mem[i][j];
+        }
+
+        mem[i][j] = false;
+        if (s[i] == p[j] || p[j] == '.')  { // 判断当前字符能否匹配上...
+
+            if (j + 1 < p.size() &&  p[j+1] == '*') { // 判断是否存在*通配符...
+                bool res1 = dp(s, i, p, j+2, mem); // *匹配0次情况...
+                bool res2 = dp(s, i+1, p, j, mem); // *匹配多次情况...
+                mem[i][j] = res1 || res2;
+            } else {
+                mem[i][j] = dp(s, i+1, p, j+1, mem);  // 各自继续往下匹配...
+            }
+
+        } else {  // 当前字符匹配不上的情况...
+
+            if (j+1 < p.size() && p[j+1] == '*') {
+                // *通配符匹配0次(跳过这个字符吧)
+                mem[i][j] =  dp(s, i, p, j+2, mem);
+            } else {
+                mem[i][j] = 0; // 真的匹配不上...
+            }
+
+        }
+        return mem[i][j];
+    }
+
+
+};
+
+
 // 计算解码方法数
 class S91 {
 public:

@@ -95,6 +95,9 @@
 		<Unit filename="D:/MyGithub/http/pro1/test_arr.h">
 			<Option target="pro1"/>
 		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_backtrack.h">
+			<Option target="pro1"/>
+		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/test_bfs.h">
 			<Option target="pro1"/>
 		</Unit>
@@ -110,7 +113,7 @@
 		<Unit filename="D:/MyGithub/http/pro1/test_hash.h">
 			<Option target="pro1"/>
 		</Unit>
-		<Unit filename="D:/MyGithub/http/pro1/tree_test.h">
+		<Unit filename="D:/MyGithub/http/pro1/test_tree.h">
 			<Option target="pro1"/>
 		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/util.h">
