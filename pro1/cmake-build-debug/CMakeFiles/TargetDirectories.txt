@@ -1,3 +1,0 @@
-D:/MyGithub/http/pro1/cmake-build-debug/CMakeFiles/pro1.dir
-D:/MyGithub/http/pro1/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/MyGithub/http/pro1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
