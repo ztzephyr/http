@@ -3,4 +3,10 @@ project(pro1)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(pro1 main.cpp sort_test.h string_test.h test_arr.h test_tree.h list_test.h util.h test_dfs.h test_hash.h test_bfs.h test_dynamic.h test_greedy.h test_backtrack.h)
+add_executable(pro1 
+    main.cpp sort_test.h test_string.h 
+    test_arr.h test_tree.h list_test.h 
+    util.h test_dfs.h test_hash.h 
+    test_bfs.h test_dynamic.h 
+    test_greedy.h test_backtrack.h 
+    test_design.h test_stack.h)

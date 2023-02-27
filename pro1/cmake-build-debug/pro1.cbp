@@ -89,9 +89,6 @@
 		<Unit filename="D:/MyGithub/http/pro1/sort_test.h">
 			<Option target="pro1"/>
 		</Unit>
-		<Unit filename="D:/MyGithub/http/pro1/string_test.h">
-			<Option target="pro1"/>
-		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/test_arr.h">
 			<Option target="pro1"/>
 		</Unit>
@@ -99,6 +96,9 @@
 			<Option target="pro1"/>
 		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/test_bfs.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_design.h">
 			<Option target="pro1"/>
 		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/test_dfs.h">
@@ -111,6 +111,12 @@
 			<Option target="pro1"/>
 		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/test_hash.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_stack.h">
+			<Option target="pro1"/>
+		</Unit>
+		<Unit filename="D:/MyGithub/http/pro1/test_string.h">
 			<Option target="pro1"/>
 		</Unit>
 		<Unit filename="D:/MyGithub/http/pro1/test_tree.h">

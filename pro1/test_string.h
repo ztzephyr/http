@@ -14,27 +14,61 @@
 
 using namespace std;
 
+// 哈希表：计算连续三次使用员工卡在一小时内的人
+class S1604 {
+public:
+    vector<string> alertNames(vector<string>& keyName, vector<string>& keyTime) {
+        vector<string> res;
+        unordered_map<string, vector<int>> m;
 
-
-/**
- * 贪心思想
- * 分割尽可能多的平衡字符串
- * @param s 一个平衡字符串
- * @return 最多的个数
- */
-int balancedStringSplit(string s) {
-    int answer = 0;  //记录结果
-    int d = 0;       //记录R和L的个数差
-    // 贪心：R和L的个数差为0时即找到最小平衡串，是本回合的最优解;继续往右分割
-    for (auto c : s) {
-        c == 'R' ? d++ : d--;
-        if (d == 0) {
-            answer++;
+        int n = keyName.size();
+        for (int i = 0;i<n;i++) {
+            string hour = keyTime[i].substr(0,2);   // 截取字符串...
+            string min = keyTime[i].substr(3);
+            int time = stoi(hour) * 60 + stoi(min); // 字符串转数字...
+            m[keyName[i]].push_back(time);
         }
+
+        for (auto& it : m) {
+            if (it.second.size() < 3) {
+                continue;   // 总打卡数小于3次跳过...
+            }
+            sort(it.second.begin(), it.second.end());
+            for (int i =2 ;i < it.second.size();i++) {
+                if (it.second[i] - it.second[i-2] <= 60) {
+                    res.push_back(it.first); // 判断一小时内是否打卡超过3次...
+                    break;
+                }
+            }
+        }
+        sort(res.begin(), res.end());   // 按字典序升序后返回结果...
+        return res;
     }
-    return answer;
-}
-//////////////////////////////贪心思想/////////////////////////////////////////////
+};
+
+
+// 删除列表中的子文件夹
+class S1233 {
+public:
+    vector<string> removeSubfolders(vector<string>& folder) {
+        vector<string> res;
+
+        sort(folder.begin(), folder.end()); // 以字典序进行排序...
+        res.push_back(folder[0]);
+
+        int n = folder.size();
+        for (int i =1;i<n;i++) {
+            int k = res.back().size();
+            if (folder[i].size() <= k  ) {
+                res.push_back(folder[i]);  // 文件夹名称唯一,且排序后长度较小的一定不是子文件夹...
+            } else if (! (folder[i].substr(0, k) == res.back() && folder[i][k] == '/')) {
+                res.push_back(folder[i]); // 前缀和最后一个相同,且后一个字符是/的是子文件夹...
+            }
+        }
+        return res;
+    }
+};
+
 
 
 // 最长回文子串
@@ -356,6 +390,10 @@ int numDifferentIntegers(string word) {
 
 
 
+
+
+
+
 class S1781 {
 public:
 
@@ -397,7 +435,6 @@ public:
         return res;
     }
 };
-
 
 
 

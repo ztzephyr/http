@@ -171,7 +171,33 @@ public:
 ////////////////////////////////////////////////////////////////////////////////
 
 
+class S1144 {
+public:
+    int movesToMakeZigzag(vector<int>& nums) {
 
+        int res1 = 0, res2 = 0;
+
+        // 第一种情况，奇数索引小于左右两边
+        for (int i =0 ; i< nums.size(); i++) {
+            int left = i ?  nums[i-1] : INT32_MAX;
+            int right = (i == nums.size()-1) ? INT32_MAX : nums[i+1];
+            if ( i % 2 != 0) {
+                int tmp = nums[i] - (min(left, right)-1);
+                res1 += max(tmp, 0);
+            }
+        }
+
+        for (int i = 0;i < nums.size();i++) {
+            int left = i ?  nums[i-1] : INT32_MAX;
+            int right = (i == nums.size()-1) ? INT32_MAX : nums[i+1];
+            if (i %2 == 0) {
+                res2 += max(nums[i]-(min(left, right)-1), 0);
+            }
+        }
+
+        return min(res1, res2);
+    }
+};
 
 
 

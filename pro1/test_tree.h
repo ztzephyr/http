@@ -3,6 +3,7 @@
 #define PRO1_TEST_TREE_H
 
 #include<vector>
+#include<unordered_map>
 #include <queue>
 #include <limits>
 #include"util.h"
@@ -351,6 +352,54 @@ public:
         }
     }
 };
+
+
+// 给你一串父节点和子节点的数组,构建该二叉树
+class S2196 {
+public:
+    TreeNode* createBinaryTree(vector<vector<int>>& descriptions) {
+        unordered_map<int, TreeNode*> m; //从节点值映射到对应节点...
+        unordered_map<int, int> mc; //从子节点值-->操作次数
+        for (auto &d : descriptions) {
+            int pVal = d[0], cVal = d[1], left = d[2];
+            if (!m.count(pVal)) {
+                m[pVal] = new TreeNode(pVal);// 不存在该父节点创建之...
+            }
+            if (!m.count(cVal)) {
+                m[cVal] = new TreeNode(cVal); // 不存在子节点也创建之...
+            }
+            if (left == 1) {    // 根据要求添加子节点...
+                m[pVal]->left = m[cVal];
+            } else {
+                m[pVal]->right = m[cVal];
+            }
+            mc[cVal]++; // 每次操作，记录使用子节点值使用次数...
+        }
+        for (auto& it : m) {
+            if (!mc.count(it.first)) {
+                return m[it.first]; // 根节点没有被作为子节点使用过...
+            }
+        }
+        return nullptr;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
