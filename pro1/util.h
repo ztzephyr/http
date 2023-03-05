@@ -1,7 +1,11 @@
-
-
 #ifndef PRO1_UTIL_H
 #define PRO1_UTIL_H
+
+#include <iostream>
+#include <vector>
+#include <random>
+
+using namespace std;
 
 
 // 公共链表节点数据结构
@@ -22,6 +26,23 @@ struct TreeNode {
     explicit TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
