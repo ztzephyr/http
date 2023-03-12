@@ -2,12 +2,43 @@
 // Created by 86380 on 2022/12/11.
 //
 
-#ifndef PRO1_LIST_TEST_H
-#define PRO1_LIST_TEST_H
+#ifndef PRO1_TEST_LIST_H
+#define PRO1_TEST_LIST_H
 
 #include "util.h"
 
-// 链表节点结构使用util.h中的ListNode
+
+/* 合并2个有序链表 */
+class S21 {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode *dummy = new ListNode(0);  // 虚拟头结点,防止都是空链表的情况
+        ListNode* p = dummy;
+        ListNode *p1 = list1, *p2 = list2;      // 使用双指针分别获取对应链表元素
+        while (p1 != nullptr && p2 != nullptr) {
+            if (p1->val < p2->val) {
+                p->next = p1;
+                p1 = p1->next;
+            } else {
+                p->next = p2;
+                p2 = p2->next;
+            }
+            p = p->next;
+        }
+        if (p1 == nullptr) {
+            p->next = p2;   // 仅剩余p2链表有数据，直接接上即可
+        }
+        if (p2 == nullptr) {
+            p->next = p1; // 仅剩余p1链表上有数据，直接接上即可
+        }
+        return dummy->next;
+    }
+};
+
+
+
+
+
 class MyLinkedList {
 
 public:
@@ -92,16 +123,6 @@ private:
     // 链表节点个数
     int size;
 };
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -192,4 +213,4 @@ public:
 
 
 
-#endif //PRO1_LIST_TEST_H
+#endif //PRO1_TEST_LIST_H
