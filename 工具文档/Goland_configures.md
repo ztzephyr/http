@@ -4,7 +4,7 @@
 
 File---Settings---Editor---Color Scheme---General---Text---Default text, 修改Background为#C7EDCC
 
-![](D:\MyGithub\http\figure\goland配置护眼色.png)
+![](D:\MyGithub\http\工具文档\goland配置护眼色.png)
 
 
 
@@ -14,7 +14,7 @@ File---Settings---Editor---Color Scheme---General---Text---Default text, 修改B
 
 在File---Settings---Keymap中，搜索vim , 然后配置快捷键，就可以通过快捷键随时开启/关闭ideavim，so happy!
 
-![](D:\MyGithub\http\figure\goland设置ideavim快捷键.png)
+![](D:\MyGithub\http\工具文档\goland设置ideavim快捷键.png)
 
 
 
