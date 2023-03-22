@@ -9,4 +9,4 @@ add_executable(pro1
     util.h test_dfs.h test_hash.h 
     test_bfs.h test_dynamic.h 
     test_greedy.h test_backtrack.h 
-    test_design.h test_stack.h)
+    test_design.h test_stack.h lru.h)
