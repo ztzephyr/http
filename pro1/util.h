@@ -5,6 +5,7 @@
 #include <vector>
 #include <unordered_map>
 #include <random>
+#include <algorithm>
 
 using namespace std;
 
@@ -29,7 +30,7 @@ struct TreeNode {
 };
 
 
-/* 链表的节点接够 */
+/* 双向链表的节点类 */
 struct Node {
     int key, val;
     Node *pre, *next;
@@ -37,15 +38,12 @@ struct Node {
     Node(int k, int v) : key(k), val(v), pre(nullptr), next(nullptr) {}
 };
 
-/* 双端链表的实现 */
+/* 双端链表类定义 */
 class DoubleList {
-
 private:
-    Node *dummyHead, *dummyTail;  // 虚拟头节点和虚拟尾结点
+    Node *dummyHead, *dummyTail;            // 虚拟头节点和虚拟尾结点
     int sz;
-
 public:
-    // 构造函数
     DoubleList()  {
         dummyHead = new Node(0, 0);
         dummyTail = new Node(0, 0);
@@ -84,65 +82,61 @@ public:
 
 class LRUCache {
 private:
-    unordered_map<int, Node*> m;   // 哈希map
-    DoubleList cache;   // 双向链表
+    unordered_map<int, Node*> m;    // 使用哈希表通过key快速查找一个数据
+    DoubleList cache;               // 使用双链表保存每个数据，可进行快速插入和删除
+    int cap;                        // LRU缓存最大容量
 public:
-    LRUCache(int capacity) {
-
+    explicit LRUCache(int capacity) {
+        cap = capacity;
     }
-
+    /* 获取一个数据key对应的val, O(1)的时间复杂度; 该数据被提升为最近使用过的 */
     int get(int key) {
         if (!m.count(key)) {
             return -1;
         }
-        // 将该数据提升为最近使用的
         makeRecently(key);
         return m[key]->val;
     }
 
     void put(int key, int value) {
-
+        if (m.count(key) != 0) {
+            deleteKey(key);                 // 已经存在该数据，需要在两个数据结构中都删除
+            addRecently(key, value);
+            return;
+        }
+        if (cap == cache.size()) {
+            removeLeastRecently();          // 删除最近最少使用的那个数据
+        }
+        addRecently(key, value);
     }
 private:
 
-    /* 将某个key提升为最近使用的 */
+    /* 将某个key对应的数据，提升为最近使用的 */
     void makeRecently(int key) {
-
-
-
+        Node* data = m[key];
+        cache.remove(data);
+        cache.addLast(data);     // 链表尾部的节点作为最近使用的
     }
-};
 
-
-
-class Difference {
-private:
-    vector<int> diff;
-public:
-    /* 输入一个数组nums, 将构造其差分数组 */
-    explicit Difference(vector<int>& nums) {
-        assert(!nums.empty());
-        diff = vector<int>(nums.size(), 0);
-        diff[0] = nums[0];
-        for (int i = 1; i < diff.size(); i++) {
-            diff[i] = nums[i] - nums[i - 1];    /* diff[i]就是nums[i]和nums[i-1]之差 */
-        }
+    /* 删除某个key对应的数据 */
+    void deleteKey(int key) {
+        Node* data = m[key];
+        cache.remove(data);
+        m.erase(key);
     }
-    /* 给闭区间[i,j]中每个元素增加val(可以是负数)*/
-    void increment(int i, int j, int val) {
-        diff[i] += val;
-        if (j+1 < diff.size()) {
-            diff[j+1] -= val;
-        }
+
+    /* 以(key,val)键值对，添加一个数据，并提升为最近使用的 */
+    void addRecently(int key, int val) {
+        Node* data = new Node(key, val);
+        cache.addLast(data);
+        m[key] = data;
     }
-    /* 使用差分数组构造结果数组 */
-    vector<int> result() {
-        vector<int> res(diff.size(), 0);
-        res[0] = diff[0];
-        for (int i = 0;i < diff.size(); i++) {
-            res[i] = res[i-1] + diff[i];
-        }
-        return res;
+
+    /* 删除一个最近最少使用的数据 */
+    void removeLeastRecently() {
+        Node* data= cache.removeFirst();    // 双向链表中第一个元素作为最近最少使用的数据
+        int key = data->key;
+        m.erase(key);
     }
 };
 
@@ -163,35 +157,6 @@ public:
 
 
 
-
-
-
-
-
-class S2379 {
-public:
-    int minimumRecolors(string blocks, int k) {
-        unordered_map<char, int> window;   // 记录窗口中w的个数
-        int minRes = blocks.size();
-        int l=0, r=0;
-        while (r < blocks.size()){
-            char c = blocks[r++];
-            if (c == 'W') {
-                window[c]++;
-            }
-            while (r-l == k) {
-                // 更新结果
-                minRes = min(minRes, window['W']);
-                // 更新窗口
-                char d = blocks[l++];
-                if (d == 'W') {
-                    window[d]--;
-                }
-            }
-        }
-        return minRes;
-    }
-};
 
 
 

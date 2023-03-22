@@ -62,11 +62,10 @@ public:
     }
 };
 
-
 /* 差分数组：区间加法 */
 class Solution370 {
 public:
-    vector<int> getModifiedArray(int length, vector<vector<int>> &updates) {
+    static vector<int> getModifiedArray(int length, vector<vector<int>> &updates) {
         vector<int> nums(length, 0);
 
         // 构造差分数组： 对于每个nums[i], 计算当前元素与之前一个元素的差分量
@@ -95,6 +94,32 @@ public:
         return res;
     }
 };
+
+
+/* 前缀和 二分查找 双指针 */
+class Solution2389 {
+public:
+    vector<int> answerQueries(vector<int>& nums, vector<int>& queries) {
+        int n = nums.size(), m = queries.size();
+
+        sort(nums.begin(), nums.end());
+        vector<int> preSum(n+1, 0);
+        for (int i = 1; i< n + 1; i++) {
+            preSum[i] = nums[i-1] + preSum[i-1];    // 排序后计算前缀和
+        }
+
+        vector<int> ans(m, 0);
+        for (int k = 0; k < m; k++) {
+            auto it = upper_bound(preSum.begin(), preSum.end(), queries[k]);    // 找到第一个大于目标值的前缀和
+            ans[k] =  it - preSum.begin() - 1;
+        }
+
+        return ans;
+    }
+};
+
+
+
 
 
 // 动态规划：0-1背包
