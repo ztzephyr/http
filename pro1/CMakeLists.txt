@@ -1,12 +1,11 @@
 cmake_minimum_required(VERSION 3.14)
-project(pro1)
-
+project(HELLO VERSION 1.0)
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(pro1 
-    main.cpp sort_test.h test_string.h 
-    test_arr.h test_tree.h test_list.h
-    util.h test_dfs.h test_hash.h 
-    test_bfs.h test_dynamic.h 
-    test_greedy.h test_backtrack.h 
-    test_design.h test_stack.h lru.h)
+
+# 添加头文件目录
+include_directories(include)
+
+
+# 添加源文件目录
+add_subdirectory(src)

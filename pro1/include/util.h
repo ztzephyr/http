@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
-#include <random>
 #include <algorithm>
 
 using namespace std;
@@ -30,8 +29,14 @@ struct TreeNode {
 };
 
 
-
-
+/* 打印数组 */
+void printVector(const vector<int>& nums) {
+    cout << "[printVector]: ";
+    for (int num : nums) {
+        cout << num << " ";
+    }
+    cout << endl;
+}
 
 
 

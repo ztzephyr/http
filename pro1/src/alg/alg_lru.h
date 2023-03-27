@@ -1,17 +1,13 @@
-//
-// Created by user on 2023/3/22.
-//
-
 #ifndef PRO1_LRU_H
 #define PRO1_LRU_H
 
 #include <list>
-#include <utility>
+#include <utility>                                          // pair类型在该头文件中
 #include <unordered_map>
-
 
 using namespace std;
 
+/* LRU缓存数据结构设计 */
 class LRUCache {
 private:
     list<pair<int, int>> cache;                             // 使用双向链表保存每个数据，可进行任何位置快速插入删除
@@ -73,6 +69,30 @@ private:
         cache.pop_back();                    // 删除list中尾元素
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #endif //PRO1_LRU_H

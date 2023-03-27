@@ -1,9 +1,5 @@
-//
-// Created by 86380 on 2022/10/26.
-//
-
-#ifndef PRO1_SORT_TEST_H
-#define PRO1_SORT_TEST_H
+#ifndef PRO1_SORT_ALG_H
+#define PRO1_SORT_ALG_H
 
 #include <iostream>
 #include <vector>
@@ -11,18 +7,16 @@
 
 using namespace std;
 
-
-/* 归并排序 */
+/* 归并排序算法实现 */
 class Merge912 {
-
     vector<int> temp;   // 临时记录数组中的元素
-
+public:
     void mergeSort(vector<int> &nums) {
         temp = nums;
         int n = nums.size();
         mergeSort(nums, 0, n - 1);
     }
-
+private:
     void mergeSort(vector<int> &nums, int lo, int hi) {
         if (lo == hi) {
             return;
@@ -33,7 +27,6 @@ class Merge912 {
         mergeSort(nums, mid + 1, hi);
         merge(nums, lo, mid, hi);           // 后序遍历到最后位置，逐步开始归并
     }
-
     void merge(vector<int> &nums, int lo, int mid, int hi) {
         // 使用temp记录nums中[lo,hi]元素, 用于本次合并
         for (int i = lo; i <= hi; i++) {
@@ -59,16 +52,18 @@ class Merge912 {
     }
 };
 
-/* 快速排序 -- 双路 */
-class Quick {
 
+/* 双路-快速排序算法实现 */
+class Quick912 {
+public:
     void quickSort(vector<int> &nums) {
         shuffle(nums);      // 随机打乱nums,防止二叉树的不平衡
         int n = nums.size();
         quickSort(nums, 0, n - 1);
     }
-
-    void shuffle(vector<int> &nums) {
+private:
+    /* 洗牌算法，随机打乱数组*/
+    void shuffle(vector<int>& nums) {
         int n = nums.size();
         default_random_engine e;
         for (int i = 0; i <= n - 1; i++) {
@@ -77,7 +72,7 @@ class Quick {
             swap(nums[i], nums[r]);
         }
     }
-
+    /* 对闭区间[lo,hi]中的元素进行排序 */
     void quickSort(vector<int> &nums, int lo, int hi) {
         if (lo >= hi) {
             return;
@@ -86,10 +81,8 @@ class Quick {
         quickSort(nums, lo, p - 1);
         quickSort(nums, p + 1, hi);
     }
-
     int partition(vector<int> &nums, int lo, int hi) {
         int pivot = nums[lo];
-
         // 使用双指针逐渐逼近
         int i = lo + 1, j = hi;
         while (i <= j) {
@@ -105,11 +98,39 @@ class Quick {
             // 此时nums[i]>pivot, nums[j]<pivot, 需要执行调换
             swap(nums[i], nums[j]);
         }
-
         swap(nums[lo], nums[j]);    // nums[j]是最右边一个小于pivot的元素
         return j;
     }
 };
 
 
-#endif //PRO1_SORT_TEST_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#endif //PRO1_SORT_ALG_H
