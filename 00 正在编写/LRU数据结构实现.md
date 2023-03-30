@@ -176,18 +176,34 @@ public:
 
 
 
-C++中的list(双向链表)支持的操作：
+C++中list(双向链表)支持的常用操作：
 
 ```c++
+std::list<int> lst;
+void push_back(int x);		/* 在链表尾部添加一个元素 */
+void push_front(int x);		/* 在链表的头部添加一个元素 */
+void pop_back();			/* 删除链表中的尾元素 */
+void pop_front();			/* 删除链表中的首元素 */
+int back();					/* 返回链表中尾元素的引用 */
+int front();				/* 返回链表中首元素的引用 */
 
+// list容器中定义的成员函数形式的算法
+void remove(int x);			/* 调用erase删除掉与x相等的每个元素 */
+void sort();				/* 使用<运算符对链表中元素进行排序 */
 ```
 
 
 
-C++中的pair类型支持的操作：
+C++中的pair模板支持的操作：
 
-```
-
+```c++
+#include<utility>
+std::pair<string, int> p;					/* 创建一个使用默认构造函数进行初始化的pair */
+std::pair<string, int> p(v1, v2);          	/* 创建类型为string和int的pair，first成员和seconde成员分别使用v1和v2初始化 */
+std::pair<string, int> p{v1, v2};			/* 使用列表初始化，first成员和seconde成员分别使用v1和v2初始化 */
+std::pair<string, int>  make_pair(v1, v2); 	/* 返回成员类型为string和int的pair */
+p.first										/* 返回first成员的值 */
+p.second									/* 返回seconde成员的值*/
 ```
 
 
