@@ -1,0 +1,3 @@
+
+
+vscode终端bash设置.

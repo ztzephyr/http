@@ -12,7 +12,7 @@ File---Settings---Editor---Color Scheme---General---Text---Default text, 修改B
 
 ##### 2、设置Goland的ideavim快捷键
 
-在File---Settings---Keymap中，搜索vim , 然后配置快捷键，就可以通过快捷键随时开启/关闭ideavim，so happy!
+在File---Settings---Keymap中，搜索vim , 然后配置快捷键，就可以通过快捷键随时开启/关闭ideavim
 
 ![](D:\MyGithub\http\工具文档\goland设置ideavim快捷键.png)
 
