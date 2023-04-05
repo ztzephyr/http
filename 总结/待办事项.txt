@@ -1,0 +1,5 @@
+
+
+vscode终端bash设置.
+
+ELF文件格式。
