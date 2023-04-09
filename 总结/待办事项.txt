@@ -3,3 +3,10 @@
 vscode终端bash设置.
 
 ELF文件格式。
+
+操作系统的内存管理机制。
+
+如何打造一个优雅的Linux环境。
+
+CPU分析工具Intel VTune的用法
+
