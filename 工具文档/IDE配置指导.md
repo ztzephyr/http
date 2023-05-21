@@ -27,6 +27,29 @@
 
 
 
+### Git bash 配置
+
+
+
+```bash
+# .minttyrc
+
+BackgroundColour=0,43,54
+Rows=43
+Columns=174
+CursorType=block
+Font=Consolas
+FontHeight=10
+FontSmoothing=full
+Locale=zh_CN
+Charset=UTF-8
+RightClickAction=past
+```
+
+
+
+
+
 
 
 
