@@ -9,6 +9,7 @@
 ```bash
 # Settings->Editor->Color Scheme->General->Text->Default text->Background 
 
+
 # RGB值： R:199 G:237 B:204
 # 颜色代码：#C7EDCC 
 ```
