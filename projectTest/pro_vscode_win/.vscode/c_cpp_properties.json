@@ -1,0 +1,21 @@
+
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**"   /* 项目下所有文件夹递归搜索 */
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+            "intelliSenseMode": "windows-gcc-x64",
+            "cStandard": "c99",
+            "cppStandard": "c++11"
+        }
+    ],
+    "version": 4
+}

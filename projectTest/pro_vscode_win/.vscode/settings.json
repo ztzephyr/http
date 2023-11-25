@@ -1,0 +1,75 @@
+{
+    "files.associations": {
+        "stdio.h": "c"
+    },
+    /*
+    * 配置todo-tree插件 
+    */
+    // "todo-tree.regex.regex": "((%|#|//|<!--|^\\s*\\*)\\s*($TAGS)|^\\s*- \\[ \\])", 
+    "todo-tree.regex.regexCaseSensitive": false, //标签匹配不区分大小写
+    "todo-tree.general.tags": [    
+        "todo",  //添加自定义的标签成员,将在下面实现它们的样式
+        "bug",
+        "fixme",
+        "done",
+        "mark",
+        "test",
+        "update"
+    ],
+    "todo-tree.highlights.defaultHighlight": {  //如果相应变量没赋值就会使用这里的默认值
+        "foreground": "#ffff00",      //字体颜色
+        "background": "#aaaaaa",      //背景色
+        "icon": "check",                //标签样式,check是一个对号的样式
+        "type": "text",                 //高亮标签及后面的内容
+        "iconColour": "#ffff00",      //标签颜色
+        "gutterIcon": true              //是否在编辑器沟槽显示
+    },
+    "todo-tree.highlights.customHighlight": {
+        "todo": {
+            "icon": "alert",          //标签样式
+            "background": "#c9c552",  //背景色
+            "rulerColour": "#c9c552", //外框颜色
+            "iconColour": "#c9c552",  //标签颜色
+        },
+        "bug": {
+            "background": "#eb5c5c",
+            "icon": "bug",
+            "rulerColour": "#eb5c5c",
+            "iconColour": "#eb5c5c",
+        },
+        "fixme": {
+            "background": "#f90",
+            "icon": "note",
+            "rulerColour": "#f90",
+            "iconColour": "#f90",
+        },
+        "done": {
+            "background": "#5eec95",
+            "icon": "check",
+            "rulerColour": "#5eec95",
+            "iconColour": "#5eec95",
+        },
+        "mark": {
+            "background": "#38b2f4",
+            "icon": "tag",
+            "rulerColour": "#38b2f4",
+            "iconColour": "#38b2f4",
+            "rulerLane": "full"
+        },
+        "test": {
+            "background": "#df7be6",
+            "icon": "flame",
+            "rulerColour": "#df7be6",
+            "iconColour": "#df7be6",
+        },
+        "update": {
+            "background": "#d65d8e",
+            "icon": "versions",
+            "rulerColour": "#d65d8e",
+            "iconColour": "#d65d8e",
+        }
+    },
+    "todo-tree.general.statusBar": "current file",      //状态栏显示仅当前文件的计数
+    "todo-tree.general.revealBehaviour": "end of todo", //在树中双击todo时光标移到待办事项末尾
+    "todo-tree.tree.showCountsInTree": false,
+}
