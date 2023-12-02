@@ -10,6 +10,12 @@ MinGW(Minimalist GNU for Windows)是一个在 Windows 上提供 GNU 工具集的
 
 
 
+也有人这么理解：
+
+> 编译工具我们选用gcc（全称GNU Compiler Collection 意思是GNU编译器套件），不过不是原版的gcc，而是它在Windows下的特制版**MinGW**(全称Minimalist GNU on Windows）。它实际上是将GCC 移植到了 Windows 平台下，并且包含了 Win32API ，因此可以将源代码编译为可在 Windows 中运行的可执行程序。而且还可以使用一些 Windows 不具备的，Linux平台下的开发工具。MinGW又分为MinGW-w64 与 MinGW ，区别在于 MinGW 只能编译生成32位可执行程序，而 **MinGW-w64** 则可以编译生成 64位 或 32位 可执行程序。MinGW 现已被 MinGW-w64 所取代，且 MinGW 也已停止了更新。
+
+
+
 ## 下载地址
 
 > MinGW下载(`mingw-get-setup.exe`)： https://osdn.net/projects/mingw/
