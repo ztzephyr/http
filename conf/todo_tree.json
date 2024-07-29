@@ -1,0 +1,50 @@
+		    
+{
+    /* 
+        插件todotree - BEGIN
+    */
+    "todo-tree.regex.regex": "((%|#|//|<!--|^\\s*\\*)\\s*($TAGS)|^\\s*- \\[ \\])", /* 标签兼容大小写字母 */
+    "todo-tree.regex.regexCaseSensitive": false,
+    "todo-tree.general.tags": [
+        "TODO",
+        "MARK",
+        "FIXME",
+        "NOTE"
+    ],
+    "todo-tree.highlights.defaultHighlight": {
+        "icon": "checklist",
+        "type": "tag",              /* 仅高亮标签 */
+        "foreground": "#ffff00",    /* 前景色 */
+        "background": "#aaaaaa",    /* 背景色 */
+        "opacity": 0.5,             /* 背景透明度 */
+        "iconColour": "#f90",       /* 图标颜色 */
+        "gutterIcon": true          /* 是否在编辑器沟槽显示图标 */
+    },
+    "todo-tree.highlights.customHighlight": {
+        "TODO": {
+            "icon": "alert",
+            "background": "#c9c552",    // 背景色
+            "rulerColour": "#c9c552",   // 外框颜色
+            "iconColour": "#c9c552",    // 标签颜色
+        },
+        "FIXME": {
+            "background": "#f90",
+            "icon": "flame",
+            "rulerColour": "#f90",
+            "iconColour": "#f90",
+        },
+        "MARK": {
+            "icon": "note",
+            "foreground": "#FF9800",
+            "type": "line"
+        },
+    },
+    "todo-tree.highlights.enabled": true,
+    "todo-tree.general.revealBehaviour": "end of todo",
+    "todo-tree.tree.showCountsInTree": false,
+    "todo-tree.general.statusBar": "current file",
+    /* 
+        插件todotree - END
+    */
+    
+}
