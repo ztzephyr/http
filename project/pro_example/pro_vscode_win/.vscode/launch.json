@@ -8,7 +8,7 @@
             "preLaunchTask": "build_main",
             "program": "${workspaceFolder}/build/main", /* 可执行文件的绝对路径 */
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}", /* 当前工作路径 */
             "environment": [],
             "externalConsole":false,
