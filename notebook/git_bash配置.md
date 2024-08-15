@@ -13,7 +13,7 @@ FontHeight=10
 FontSmoothing=full
 Locale=zh_CN
 Charset=UTF-8
-RightClickAction=past
+RightClickAction=paste
 ```
 
 
