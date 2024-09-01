@@ -12,7 +12,8 @@ Options--Text--Character set--UTF-8
 # 设置非ASCLL字符直接显示原始字符(不使用转义符和ASCLL码显示).
 git config --global core.quotepath false
 
-3.配置文件设置外观和基本属性
+3.配置文件(外观和属性)
+--------------------------
 # ~/.minttyrc
 BackgroundColour=0,43,54
 Rows=43
@@ -26,6 +27,7 @@ Charset=UTF-8
 RightClickAction=paste
 
 4.创建SSH密钥及关联Github
+------------------------
 # 配置用户名和邮箱(仅用作git提交记录)
 git config --global user.name "zhengt"
 git config --global user.email "zhengt@example.com"
