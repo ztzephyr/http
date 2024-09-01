@@ -1,0 +1,14 @@
+SumutraPDF阅读器配置指南
+=======================
+
+1.sumutraPDF设置为护眼背景色
+---------------------------
+设置--高级选项，然后修改配置文件中BackgroundColor如下：
+FixedPageUI [
+	TextColor = #000000
+	BackgroundColor = #c7edcc
+	SelectionColor = #f5fc0c
+	WindowMargin = 2 4 2 4
+	PageSpacing = 4 4
+	HideScrollbars = false
+]
