@@ -1,0 +1,37 @@
+GitBash配置指南
+
+1.用户界面语言设置为中文
+-----------------------
+Options--Window--UI language--zh_CN
+
+2.文本区域设置选项
+-----------------
+# 设置为简体中文地区规范和字符编码格式
+Options--Text--Locale--zh_CN
+Options--Text--Character set--UTF-8
+# 设置非ASCLL字符直接显示原始字符(不使用转义符和ASCLL码显示).
+git config --global core.quotepath false
+
+3.配置文件设置外观和基本属性
+# ~/.minttyrc
+BackgroundColour=0,43,54
+Rows=43
+Columns=174
+CursorType=block
+Font=Consolas
+FontHeight=10
+FontSmoothing=full
+Locale=zh_CN
+Charset=UTF-8
+RightClickAction=paste
+
+4.创建SSH密钥及关联Github
+# 配置用户名和邮箱(仅用作git提交记录)
+git config --global user.name "zhengt"
+git config --global user.email "zhengt@example.com"
+# 在~/目录下执行, 生成: 私钥~/.ssh/id_ed25519，公钥~/.ssh/id_ed25519.pub
+ssh-keygen -t ed25519 -C "zhengt@example.com"
+# 查看公钥id_ed25519.pub
+cat ~/.ssh/id_ed25519.pub
+# github右上角-Setting-左侧栏-SSH and GPG Keys-new SSH key
+
