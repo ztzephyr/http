@@ -1,4 +1,4 @@
-SumutraPDF阅读器配置指南
+SumutraPDF(v3.4.6)阅读器配置指南
 =======================
 
 1.sumutraPDF设置为护眼背景色
