@@ -1,0 +1,18 @@
+Python基本知识指南
+=================
+
+1.概述
+pip是Python的包管理工具,用于安装、升级和管理Python包(库),windows下安装Python会默认安装pip工具;
+windows下Python的默认包安装路径为$python_dir\Lib\site-packages\*;
+
+2.Python的包基本命令
+# 查看已安装的包
+pip list
+pip freeze
+# 检查安装的包是否有更新
+pip list --outdated
+# 更新包
+pip install --upgrade <package_name>
+# 删除包
+pip uninstall <package_name>
+
