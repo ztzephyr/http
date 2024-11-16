@@ -28,3 +28,4 @@
 .\objects\main.o: .\Lib\stm32f10x_usart.h
 .\objects\main.o: .\Lib\stm32f10x_wwdg.h
 .\objects\main.o: .\Lib\misc.h
+.\objects\main.o: User\uart.h

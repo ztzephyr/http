@@ -1,0 +1,59 @@
+# Ignore build output directories
+/Debug/
+/Release/
+/build/
+/out/
+/Objects/
+/Listings/
+/*.lst
+
+# CubeMX generated files
+*.ioc
+/Drivers/STM32F*/Middlewares/*
+
+# Ignore temporary and system files
+*.d
+*.o
+*.a
+*.axf
+*.bak
+*.bin
+*.elf
+*.hex
+*.map
+*.list
+*.log
+*.sct
+*.crl
+*.pdb
+*.svd
+
+# Ignore Keil specific files
+/.uvgui.*
+*.uvoptx
+*.uvprojx
+*.uvopt
+*.uvproj
+
+# CubeIDE specific files
+/.cproject
+/.project
+/.settings
+
+# Ignore operating system files
+.DS_Store
+Thumbs.db
+
+# Ignore other generated files and temporary files
+*.swo
+*.dep
+*.dmp
+*.exe
+*.swp
+*.swp~
+*.tmp
+
+# Ignore user settings or backups
+*.user
+*.bak
+*.bkp

@@ -1,0 +1,24 @@
+
+{
+    "configurations": [
+        {
+            "name": "Target",
+            "includePath": [
+                "${workspaceFolder}/**",   /* 项目下所有文件夹递归搜索 */
+                "D:\\Program Files\\Keil_v5\\ARM\\ARMCLANG\\include"
+            ],
+            "defines": [
+                "USE_STDPERIPH_DRIVER",
+                "STM32F10X_MD",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard":"gnu99",
+            "cppStandard":"gnu++11",
+            "intelliSenseMode": "gcc-arm",
+            "compilerPath": ""
+        }
+    ],
+    "version": 4
+}
