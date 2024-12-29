@@ -37,3 +37,6 @@ ssh-keygen -t ed25519 -C "zhengt@example.com"
 cat ~/.ssh/id_ed25519.pub
 # github右上角-Setting-左侧栏-SSH and GPG Keys-new SSH key
 
+5.Git在Windows下使用tree工具
+-----------------------
+将tree.exe拷贝到D:\Program Files\Git\usr\bin目录下;

@@ -1,0 +1,13 @@
+STM32CubeMx使用指南
+===================
+
+JRE下载安装
+-----------
+1.STM32CubeMx需要依赖JAVA环境，因此需要安装Java;
+2.JRE下载地址：https://www.java.com/zh-CN/download/manual.jsp
+
+STM32CubeMx下载
+---------------
+1.下载地址：https://www.st.com.cn/zh/development-tools/stm32cubemx.html
+2.可提供邮箱作为访客下载，下载链接将发送至邮箱;
+3.固件包(HAL库)安装，STM32CubeMx--help--Manage embedded software packages;
